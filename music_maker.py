@@ -8,43 +8,26 @@ import pyaudio
 import sys
 import os
 from time import sleep
+from macros import *
 
 
-NAMES = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
+# set key like: "A4" or "B#6", 
+# numbers = 4, 5, or 6,
+# use sharp for # and flat,
 
-FREQUENCIES = {
-    "A": 440.0,
-    "A#": 466.16,
-    "B" : 493.88,
-    "C": 523.25,
-    "C#": 554.37,
-    "D": 587.33,
-    "D#": 622.25,
-    "E": 659.25,
-    "F": 698.46,
-    "F#": 739.99,
-    "G": 783.99,
-    "G#": 830.61,
-}
-
-BEATS = [1, .75, .5, .25, .125]
-
-MEASURE = 1
-
-MAJOR = [2, 2, 1, 2, 2, 2]
 
 class Note(object):
 
-    def __init__(self, frequency=440, length=1, amplitude=1,
+    def __init__(self, frequency=440, duration=1, amplitude=1,
                  rate=44100):
         self.frequency = frequency
-        self.length = length
+        self.duration = duration
         self.amplitude = amplitude
         self.rate = rate
 
     def sine(self):
-        length = int(self.length * self.rate)
-        factor = float(self.frequency) * (math.pi * 2) / self.rate
+        length = float(self.duration * self.rate)
+        factor = float(self.frequency) * ((math.pi * 2) / self.rate)
         return numpy.sin(numpy.arange(length) * factor)
 
     def play_note(self, stream):
@@ -53,55 +36,102 @@ class Note(object):
         chunk = numpy.concatenate(chunks) * 0.25
         stream.write(chunk.astype(numpy.float32).tostring())
 
-class Melody(object):
+class Key(object):
 
-    def __init__(self, measures=4, key="C"):
-        self.measures = measures
-        self.key = key
-        self.rhythm = []
-        self.notes = []
-        self.options = []
-        self.melody = []
-        self.set_rhythm()
-        self.set_options()
-        self.set_notes()
-     
-    def print_melody(self):
-        for index in range(0, len(self.melody)):
-            print "{}:{}".format(self.melody[index], self.rhythm[index]),
-        print ""   
- 
-    def set_rhythm(self):
-        total = float(self.measures * MEASURE)
-        while sum(self.rhythm) < total:
-            self.rhythm.append(random.choice(BEATS))
-        if sum(self.rhythm) > total:
-            excess = sum(self.rhythm) - total
-            self.rhythm[-1] = self.rhythm[-1] - excess
+    def __init__(self, name=None, scale_name=None):
+        self.name = name
+        self.scale_name = scale_name if scale_name else self.set_scale_name()
+        self.scale = self.set_scale()
+        self.notes = self.set_notes()
 
-    def set_options(self):
-        self.options.append(self.key)
-        index = NAMES.index(self.key)
-        for step in MAJOR:
+    def set_scale_name(self):
+        return random.choice(list(SCALES))
+
+    def set_scale(self):
+        return SCALES[self.scale_name]
+
+    def set_notes(self):
+        notes = [self.name]
+        index = NAMES.index(self.name)
+        for step in self.scale:
             index += step
             if index > 11:
                 index -= 12
-            self.options.append(NAMES[index])
+            notes.append(NAMES[index])
+        return notes
 
-    def set_notes(self):
+class Melody(object):
+
+    def __init__(self, measures=4, key_name="C5", key=None):
+        self.measures = measures
+        self.key = key if key else Key(key_name)
+        self.rhythm = self.set_rhythm()
+        self.melody = self.set_melody()
+    
+ 
+    def set_rhythm(self):
+        beats = []
+        total = float(self.measures * MEASURE)
+        while sum(beats) < total:
+            beats.append(random.choice(BEATS))
+        if sum(beats) > total:
+            excess = sum(beats) - total
+            beats[-1] = beats[-1] - excess
+        return beats
+
+    def set_melody(self):
         total = len(self.rhythm)
-        start = NAMES.index(self.key)
+        order = []
         for position in range(total):
-            name = random.choice(self.options)
-            note = Note(FREQUENCIES[name], self.rhythm[position-1])
-            self.notes.append(note)
-            self.melody.append(name)
+            name = random.choice(self.key.notes)
+            order.append(name)
+        return order
+
+class Verse(object):
+    
+    def __init__(self, measures, key):
+        self.frequencies = []
+        self.first_melody = Melody(measures, key)
+        self.second_melody = Melody(measures, self.first_melody.key.name,
+                                     self.first_melody.key)
+        self.note_arrangement = self.set_note_arrangement()
+        self.beat_arrangement = self.set_beat_arrangement()
+        self.frequencies = self.set_frequencies()
+
+    def set_note_arrangement(self):
+        return (self.first_melody.melody + self.first_melody.melody
+                + self.second_melody.melody + self.first_melody.melody)
+
+    def set_beat_arrangement(self):
+        return (self.first_melody.rhythm + self.first_melody.rhythm
+                +self.second_melody.rhythm + self.first_melody.rhythm)
+    
+    def set_frequencies(self):
+        freqs = []
+        for x in xrange(len(self.note_arrangement)):
+            name = self.note_arrangement[x]
+            note = Note(FREQUENCIES[name], self.beat_arrangement[x])
+            freqs.append(note)
+        return freqs
+
+    def print_verse(self):
+        break1 = len(self.first_melody.melody)
+        break2 = break1 * 2
+        break3 = break2 + len(self.second_melody.melody)
+        print "Key of {}: {} scale".format(self.first_melody.key.name,
+                                           self.first_melody.key.scale_name)
+        for index in range(0, len(self.note_arrangement)):
+            if index in (break1, break2, break3):
+                print ""
+            length = self.beat_arrangement[index]
+            print "{}:{}".format(self.note_arrangement[index], length),
+        print ""
 
     def play(self):
         p = pyaudio.PyAudio()
         stream = p.open(format=pyaudio.paFloat32, channels=1, rate=44100, output=1)
-        self.print_melody()
-        for note in self.notes:
+        self.print_verse()
+        for note in self.frequencies:
             note.play_note(stream)
             sleep(0.1)
         stream.close()
@@ -117,11 +147,9 @@ def block_warning_before():
 def block_warning_after():
     os.dup2(old_stderr, 2)
     os.close(old_stderr)
-# get key
-# set up possible notes (frequency, amp, whatevs)
+
+# get key from user
 # set up verse, chorus, bridge
-# create rhythm for verse, chorus, bridge
-# generate notes for verse, chorus, bridge
 # put together song (2 verse, chorus, 2 verse, chorus, bridge, chorus)
 # print song
 # play song
@@ -129,7 +157,6 @@ def block_warning_after():
 # loop song?
 
 # maybe: user sets structure
-# happy/sad (major, minor)
 # fast/slow
 # make new chorus/verse/bridge (keep other sections)
 # write choruse/verse/bridge with keyboard
@@ -138,18 +165,9 @@ def block_warning_after():
 # class break: length
 # class melody: notes in order
 # class song: verse, chorus, bridge, arrangement, key
-# class key: notes, chords?, major/minor
-
-# major key: W W H W W W H, the name is the starting note, one index step == half step in NAMES
-# minor key: W H W W H W W
 
 if __name__ == "__main__":
-    melody = Melody(4, "C")
-    print "Key of C:"
     block_warning_before()
-    melody.play()
-    melody.play()
-    melody2 = Melody(4, "C")
-    melody2.play()
-    melody.play()
+    verse = Verse(4, "C5")
+    verse.play()
     block_warning_after()
