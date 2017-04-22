@@ -17,8 +17,6 @@ class Key(object):
 
     def set_notes(self):
         notes = [self.name]
-        print self.name
-        print NAMES
         index = NAMES.index(self.name)
         for step in self.scale:
             index += step

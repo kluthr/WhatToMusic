@@ -21,37 +21,37 @@ from verse import Verse
 class CLI(object):
 
     def __init__(self, args):
-        print args['--key']
         self.key = args['--key'] if args['--key'] else choice(NAMES)
         self.scale = args['--scale'] if args['--scale'] else choice(list(SCALES))
         self.measures = args['--measures'] if args['--measures'] else 4
-
-    def block_warning_before():
-        devnull = os.open(os.devnull, os.O_WRONLY)
-        old_stderr = os.dup(2)
-        sys.stderr.flush()
-        os.dup2(devnull, 2)
-        os.close(devnull)
-
-    def block_warning_after():
-        os.dup2(old_stderr, 2)
-        os.close(old_stderr)
 
     @classmethod
     def run(cls):
         args = docopt(__doc__)
         cli = cls(args)
-        #self.block_warning_before()
+#        block_warning_before()
         verse = Verse(cli.measures, cli.key, cli.scale)
         verse.play()
-        #self.block_warning_after()
+ #       block_warning_after()
 
+def block_warning_before():
+    devnull = os.open(os.devnull, os.O_WRONLY)
+    old_stderr = os.dup(2)
+    sys.stderr.flush()
+    os.dup2(devnull, 2)
+    os.close(devnull)
+
+def block_warning_after():
+    os.dup2(old_stderr, 2)
+    os.close(old_stderr)
 
 if __name__ == "__main__":
     CLI.run()
 
 
 # IDEAS FOR IMPROVEMENTS
+
+# ADD A DB SO USERS CAN SAVE SONGS!
 
 # Make CLI interactive:
 #    1. Ask for key, scale, measures

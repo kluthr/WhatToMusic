@@ -47,8 +47,17 @@ class Verse(object):
         p = pyaudio.PyAudio()
         stream = p.open(format=pyaudio.paFloat32, channels=1, rate=44100, output=1)
         self.print_verse()
+        wave = ''
+        prev = Note(0)
         for note in self.frequencies:
-            note.play_note(stream)
-            sleep(0.1)
+            if note == prev:
+                silence = Note(0, 0.125)
+                wave += note.chunk_note()
+            wave += note.chunk_note()
+            prev = note
+        end = Note(0, 1.0)
+        wave += note.chunk_note()
+        stream.write(wave)
+        #sleep(5)
         stream.close()
         p.terminate
