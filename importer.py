@@ -33,10 +33,21 @@ class Importer(object):
             verse.play()
 
 def main():
-    importer = Importer("jambot_songs.json")
+    importer = Importer("jambot_songs2.json")
     importer.read_songs()
     importer.make_verses()
-    importer.play_verses()
+    print "Imported {} songs!".format(len(importer.verses))
+    choice = int(raw_input("Which song do you want to hear? (Enter 0 for all)\
+        "))
+    if 0 < choice <= len(importer.verses):
+       if choice == 0:
+           importer.play_verses()
+       else:
+           choice -= 1
+           importer.verses[choice].print_verse()
+           importer.verses[choice].play()
+    else: 
+        "Bad song number!"
 
 
 if __name__=="__main__":
