@@ -1,15 +1,20 @@
 import pyaudio
 from time import sleep
 from macros import *
+from random import choice
 from note import Note
 from melody import Melody
 
 class Verse(object):
     
-    def __init__(self, measures, key_name, scale):
+    def __init__(self, measures=None, key=None, scale=None):
+        self.key = key if key else choice(NAMES)            
+        self.scale = scale if scale else choice(list(SCALES))
+        self.measures = measures if measures else 4 
         self.frequencies = []
-        self.first_melody = Melody(measures, key_name, scale)
-        self.second_melody = Melody(measures, key_name, scale, self.first_melody.key)
+        self.first_melody = Melody(self.measures, self.key, self.scale)
+        self.second_melody = Melody(self.measures, self.key, self.scale,
+                                    self.first_melody.key)
         self.note_arrangement = self.set_note_arrangement()
         self.beat_arrangement = self.set_beat_arrangement()
         self.frequencies = self.set_frequencies()
@@ -34,19 +39,21 @@ class Verse(object):
         break1 = len(self.first_melody.melody)
         break2 = break1 * 2
         break3 = break2 + len(self.second_melody.melody)
-        print "Key of {}: {} scale".format(self.first_melody.key.name,
+        print "Key of {}<br>> {} scale<br>".format(self.first_melody.key.name,
                                            self.first_melody.key.scale_name)
+        print ">"
         for index in range(0, len(self.note_arrangement)):
             if index in (break1, break2, break3):
-                print ""
+                print "<br>>"
             length = self.beat_arrangement[index]
-            print "{}:{}".format(self.note_arrangement[index], length),
+            print " {}({})".format(self.note_arrangement[index][:-1], length),
         print ""
 
     def play(self):
         p = pyaudio.PyAudio()
-        stream = p.open(format=pyaudio.paFloat32, channels=1, rate=44100, output=1)
-        self.print_verse()
+        stream = p.open(format=pyaudio.paFloat32, channels=1, rate=44100,
+                        output=1)
+        #self.print_verse()
         wave = ''
         prev = Note(0)
         for note in self.frequencies:
@@ -58,6 +65,6 @@ class Verse(object):
         end = Note(0, 1.0)
         wave += note.chunk_note()
         stream.write(wave)
-        #sleep(5)
+        sleep(1)
         stream.close()
         p.terminate
