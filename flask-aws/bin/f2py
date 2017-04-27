@@ -1,4 +1,4 @@
-#!/Users/beckykluth/src/WhatToMusic/flask-aws/bin/python
+#!/Users/beckykluth/src/WhatToMusic/flask-aws/bin/python2.7
 # See http://cens.ioc.ee/projects/f2py2e/
 from __future__ import division, print_function
 
