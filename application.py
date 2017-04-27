@@ -34,4 +34,4 @@ def play():
     return jsonify(verse=data)
 
 if __name__ == "__main__":
-    application.run(host='0.0.0.0')
+    application.run(debug=True, host='0.0.0.0')
