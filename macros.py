@@ -39,12 +39,12 @@ BEATS = [1.0, 0.75, 0.5, 0.25, 0.125]
 MEASURE = 1
 
 SCALES = {
-    "major": [2, 2, 1, 2, 2, 2],
-    "natural minor": [2, 1, 2, 2, 1, 2],
-    "harmonic minor": [2, 1, 2, 2, 1, 3],
-    "melodic minor": [2, 1, 2, 2, 2, 2],
-    "dorian mode": [2, 1, 2, 2, 2, 1],
-    "mixolydian mode": [2, 2, 1, 2, 2, 1],
-    "ahava raba mode": [1, 3, 1, 2, 1, 2],
-    "pentatonic blues": [3, 2, 2, 3, 2]
+    "Major": [2, 2, 1, 2, 2, 2],
+    "Natural Minor": [2, 1, 2, 2, 1, 2],
+    "Harmonic Minor": [2, 1, 2, 2, 1, 3],
+    "Melodic Minor": [2, 1, 2, 2, 2, 2],
+    "Dorian Mode": [2, 1, 2, 2, 2, 1],
+    "Mixolydian Mode": [2, 2, 1, 2, 2, 1],
+    "Ahava Raba Mode": [1, 3, 1, 2, 1, 2],
+    "Pentatonic Blues": [3, 2, 2, 3, 2]
 }
