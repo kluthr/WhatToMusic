@@ -40,7 +40,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/Users/beckykluth/src/WhatToMusic/flask-aws"
+VIRTUAL_ENV="/Users/beckykluth/website/WhatToMusic/flask-aws"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
