@@ -15,15 +15,19 @@ $(function() {
         typeSpeed: 0,
         showCursor: false
       });
-      $.post( "/play", { "verse": JSON.stringify(data.verse) } )
-      .done(function(wave) {   
-        alert(wave.song);
-        var audio = new Audio(wave.song);
-        audio.play();         
-        $('#btnholder').html("<input type='button' class='btn' id='replaybutton' onclick='javascript:void();' value='Replay' />")
-        $('#replaybutton').on('click', function() {
-          audio.play() 
-        });
+      var song = new Howl({
+          urls: [data.url],
+          autoplay: true,
+          loop: true,
+          volume: 0.5,
+          onend: function() {
+             alert('Finished!');      
+          }
+      });        
+      song.play()
+      $('#btnholder').html("<input type='button' class='btn' id='replaybutton' onclick='javascript:void();' value='Replay' />")
+      $('#replaybutton').on('click', function() {
+        song.play() 
       });
     });
     return false;

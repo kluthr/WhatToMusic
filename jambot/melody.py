@@ -1,5 +1,5 @@
 import random
-import pyaudio
+#import pyaudio
 from macros import *
 from key import Key
 

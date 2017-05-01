@@ -6,9 +6,9 @@ from random import choice
 from note import Note
 from melody import Melody
 
-INTERNAL = '/usr/share/nginx/html/'
-EXTERNAL = 'http://ec2-52-32-150-158.us-west-2.compute.amazonaws.com/'
-OUTPUT = 'jambot/song' + str(time()) + '.wav'
+TIME = str(time())[:-3]
+URL = 'http://52.42.87.255/static/songs/' + TIME + '.wav'
+INTERNAL = 'static/songs/' + TIME + '.wav'
 
 class Verse(object):
     
@@ -25,7 +25,8 @@ class Verse(object):
         self.note_arrangement = notes if notes else self.set_note_arrangement()
         self.beat_arrangement = beats if beats else self.set_beat_arrangement()
         self.frequencies = self.set_frequencies()
-        self.wavefile = EXTERNAL + OUTPUT
+        self.wavefile = URL
+        self.record()
 
     def set_note_arrangement(self):
         return (self.first_melody.melody + self.first_melody.melody
@@ -57,10 +58,12 @@ class Verse(object):
             print " {}({}) ".format(self.note_arrangement[index][:-1], length),
         print ""
 
-    def play(self):
-        p = pyaudio.PyAudio()
-        stream = p.open(format=pyaudio.paFloat32, channels=1, rate=44100,
-                        output=True)
+    def record(self):
+#        p = pyaudio.PyAudio()
+#        stream = p.open(format=pyaudio.paFloat32, channels=1, rate=44100,
+#                        output=False)
+        with open(INTERNAL, 'w+'):
+            pass
         songwave = ''
         prev = Note(0)
         for note in self.frequencies:
@@ -71,13 +74,15 @@ class Verse(object):
             prev = note
         end = Note(0, 1.0)
         songwave += note.chunk_note()
-        wf = wave.open(INTERNAL + OUTPUT, 'wb')
-        wf.setnchannels(1)
-        wf.setsampwidth(p.get_sample_size(pyaudio.paFloat32))
-        wf.setframerate(44100)
+        print "writing to {}".format(INTERNAL)
+        wf = wave.open(INTERNAL, 'wb')
+        print wf
+        wf.setnchannels(2)
+        wf.setsampwidth(4.0)
+        wf.setframerate(48000)
         wf.writeframes(songwave)
         wf.close()
 #        stream.write(wave)
         sleep(1)
-        stream.close()
-        p.terminate
+ #       stream.close()
+  #      p.terminate

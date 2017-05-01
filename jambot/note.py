@@ -1,6 +1,6 @@
 import numpy
 import math
-import pyaudio
+#import pyaudio
 
 class Note(object):
 
