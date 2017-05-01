@@ -21,10 +21,9 @@ def create():
     sys.stdout = mystdout = StringIO()
     song.print_verse()
     sys.stdout = old_stdout
-#    print_song = jsonify(mystdout.getvalue()) 
-    verse = {"key": song.key, "scale": song.scale,
-             "melody": song.note_arrangement, "beats": song.beat_arrangement}
-    return jsonify(verse=verse, notation=mystdout.getvalue(), url=song.wavefile)
+    #verse = {"key": song.key, "scale": song.scale,
+    #         "melody": song.note_arrangement, "beats": song.beat_arrangement}
+    return jsonify(notation=mystdout.getvalue(), url=song.url)
 
 #@application.route('/play', methods = ['POST'])
 #def play():

@@ -1,5 +1,6 @@
 import pyaudio
 import wave
+from pydub import AudioSegment
 from time import time, sleep
 from macros import *
 from random import choice
@@ -7,8 +8,9 @@ from note import Note
 from melody import Melody
 
 TIME = str(time())[:-3]
-URL = 'http://52.42.87.255/static/songs/' + TIME + '.wav'
-INTERNAL = 'static/songs/' + TIME + '.wav'
+WAV = 'static/songs/' + TIME + '.wav'
+MP3 = 'static/songs/' + TIME + '.mp3'
+URL = 'http://52.42.87.255/' + MP3
 
 class Verse(object):
     
@@ -25,8 +27,10 @@ class Verse(object):
         self.note_arrangement = notes if notes else self.set_note_arrangement()
         self.beat_arrangement = beats if beats else self.set_beat_arrangement()
         self.frequencies = self.set_frequencies()
-        self.wavefile = URL
+        self.songwave = ''
+        self.url = URL
         self.record()
+        self.convert()
 
     def set_note_arrangement(self):
         return (self.first_melody.melody + self.first_melody.melody
@@ -59,30 +63,34 @@ class Verse(object):
         print ""
 
     def record(self):
+        with open(WAV, 'w+'):
+            prev = Note(0)
+            for note in self.frequencies:
+                if note == prev:
+                    silence = Note(0, 0.125)
+                    self.songwave += note.chunk_note()
+                self.songwave += note.chunk_note()
+                prev = note
+            end = Note(0, 1.0)
+            self.songwave += note.chunk_note()
+        wf = wave.open(WAV, 'wb')
+        wf.setnchannels(1)
+        wf.setsampwidth(4.0)
+        wf.setframerate(44100)
+        wf.writeframes(self.songwave)
+        wf.close()
+
+    def convert(self):
+        with open(MP3, 'w+'):
+            pass
+        song = AudioSegment.from_wav(WAV)
+        song.export(MP3, format='mp3')
+
+#    def play(self):
 #        p = pyaudio.PyAudio()
 #        stream = p.open(format=pyaudio.paFloat32, channels=1, rate=44100,
-#                        output=False)
-        with open(INTERNAL, 'w+'):
-            pass
-        songwave = ''
-        prev = Note(0)
-        for note in self.frequencies:
-            if note == prev:
-                silence = Note(0, 0.125)
-                songwave += note.chunk_note()
-            songwave += note.chunk_note()
-            prev = note
-        end = Note(0, 1.0)
-        songwave += note.chunk_note()
-        print "writing to {}".format(INTERNAL)
-        wf = wave.open(INTERNAL, 'wb')
-        print wf
-        wf.setnchannels(2)
-        wf.setsampwidth(4.0)
-        wf.setframerate(48000)
-        wf.writeframes(songwave)
-        wf.close()
-#        stream.write(wave)
-        sleep(1)
+#                        output=True)
+#        stream.write(self.songwave)
+#        sleep(1)
  #       stream.close()
   #      p.terminate

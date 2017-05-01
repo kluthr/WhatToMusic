@@ -15,22 +15,26 @@ $(function() {
         typeSpeed: 0,
         showCursor: false
       });
-      var song = new Howl({
-          urls: [data.url],
-          autoplay: true,
-          loop: true,
-          volume: 0.5,
-          onend: function() {
-             alert('Finished!');      
-          }
-      });        
-      song.play()
+      var soundFile = document.createElement("audio");
+      soundFile.preload = "auto";
+      var src = document.createElement("source");
+      src.src = data.url;
+      soundFile.appendChild(src);
+      soundFile.load();
+      soundFile.volume = 0.000000;
+      soundFile.play();
+      
+      function play() {
+          soundFile.currentTime = 0.01;
+          soundFile.volume = 1.0;
+          setTimeout(function(){soundFile.play();},1);
+      }           
+      play()
       $('#btnholder').html("<input type='button' class='btn' id='replaybutton' onclick='javascript:void();' value='Replay' />")
       $('#replaybutton').on('click', function() {
-        song.play() 
+        play() 
       });
     });
     return false;
   });
 });
-
