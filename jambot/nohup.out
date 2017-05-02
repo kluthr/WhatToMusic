@@ -1,0 +1,59 @@
+[2017-05-01 19:08:30 +0000] [22891] [INFO] Starting gunicorn 19.7.1
+[2017-05-01 19:08:30 +0000] [22891] [INFO] Listening at: http://127.0.0.1:8000 (22891)
+[2017-05-01 19:08:30 +0000] [22891] [INFO] Using worker: sync
+[2017-05-01 19:08:30 +0000] [22896] [INFO] Booting worker with pid: 22896
+[2017-05-01 19:12:26 +0000] [23222] [INFO] Starting gunicorn 19.7.1
+[2017-05-01 19:12:26 +0000] [23222] [INFO] Listening at: http://127.0.0.1:8000 (23222)
+[2017-05-01 19:12:26 +0000] [23222] [INFO] Using worker: sync
+[2017-05-01 19:12:26 +0000] [23227] [INFO] Booting worker with pid: 23227
+[2017-05-01 19:12:43 +0000] [23274] [INFO] Starting gunicorn 19.7.1
+[2017-05-01 19:12:43 +0000] [23274] [INFO] Listening at: http://127.0.0.1:8000 (23274)
+[2017-05-01 19:12:43 +0000] [23274] [INFO] Using worker: sync
+[2017-05-01 19:12:43 +0000] [23279] [INFO] Booting worker with pid: 23279
+[2017-05-01 20:35:18 +0000] [23227] [ERROR] Error handling request /jambot/
+Traceback (most recent call last):
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 167, in handle_request
+    listener.getsockname(), self.cfg)
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/http/wsgi.py", line 201, in create
+    path_info = path_info.split(script_name, 1)[1]
+IndexError: list index out of range
+[2017-05-01 20:35:22 +0000] [22896] [ERROR] Error handling request /jambot/
+Traceback (most recent call last):
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 167, in handle_request
+    listener.getsockname(), self.cfg)
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/http/wsgi.py", line 201, in create
+    path_info = path_info.split(script_name, 1)[1]
+IndexError: list index out of range
+[2017-05-01 20:40:49 +0000] [22896] [ERROR] Error handling request /jambot/
+Traceback (most recent call last):
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 135, in handle
+    self.handle_request(listener, req, client, addr)
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/workers/sync.py", line 167, in handle_request
+    listener.getsockname(), self.cfg)
+  File "/home/kluthr/src/Jambot/env/local/lib/python2.7/site-packages/gunicorn/http/wsgi.py", line 201, in create
+    path_info = path_info.split(script_name, 1)[1]
+IndexError: list index out of range
+[2017-05-02 02:51:52 +0000] [23222] [INFO] Handling signal: term
+[2017-05-02 02:51:52 +0000] [23227] [INFO] Worker exiting (pid: 23227)
+[2017-05-02 02:51:52 +0000] [23222] [INFO] Shutting down: Master
+[2017-05-02 02:51:58 +0000] [23274] [INFO] Handling signal: term
+[2017-05-02 02:51:58 +0000] [23279] [INFO] Worker exiting (pid: 23279)
+[2017-05-02 02:51:58 +0000] [23274] [INFO] Shutting down: Master
+[2017-05-02 02:52:27 +0000] [22891] [INFO] Handling signal: term
+[2017-05-02 02:52:27 +0000] [22896] [INFO] Worker exiting (pid: 22896)
+[2017-05-02 02:52:27 +0000] [22891] [INFO] Shutting down: Master
+[2017-05-02 03:17:55 +0000] [30893] [INFO] Starting gunicorn 19.7.1
+[2017-05-02 03:17:55 +0000] [30893] [INFO] Listening at: http://127.0.0.1:8000 (30893)
+[2017-05-02 03:17:55 +0000] [30893] [INFO] Using worker: sync
+[2017-05-02 03:17:55 +0000] [30898] [INFO] Booting worker with pid: 30898
+[2017-05-02 05:05:09 +0000] [30893] [INFO] Handling signal: term
+[2017-05-02 05:05:09 +0000] [30898] [INFO] Worker exiting (pid: 30898)
+[2017-05-02 05:05:09 +0000] [30893] [INFO] Shutting down: Master
+[2017-05-02 21:07:10 +0000] [2258] [INFO] Starting gunicorn 19.7.1
+[2017-05-02 21:07:10 +0000] [2258] [INFO] Listening at: http://127.0.0.1:8000 (2258)
+[2017-05-02 21:07:10 +0000] [2258] [INFO] Using worker: sync
+[2017-05-02 21:07:10 +0000] [2263] [INFO] Booting worker with pid: 2263

@@ -1,4 +1,4 @@
-import pyaudio
+#import pyaudio
 import wave
 from pydub import AudioSegment
 from time import time, sleep
@@ -75,7 +75,7 @@ class Verse(object):
             self.songwave += note.chunk_note()
         wf = wave.open(WAV, 'wb')
         wf.setnchannels(1)
-        wf.setsampwidth(4.0)
+        wf.setsampwidth(4)
         wf.setframerate(44100)
         wf.writeframes(self.songwave)
         wf.close()
