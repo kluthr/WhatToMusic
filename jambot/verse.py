@@ -10,7 +10,7 @@ from melody import Melody
 TIME = str(time())[:-3]
 WAV = 'static/songs/' + TIME + '.wav'
 MP3 = 'static/songs/' + TIME + '.mp3'
-URL = 'http://hellojambot.com/' + MP3
+URL = 'http://34.209.160.207/' + MP3
 
 class Verse(object):
     
