@@ -7,14 +7,9 @@ from random import choice
 from note import Note
 from melody import Melody
 
-TIME = str(time())[:-3]
-WAV = 'static/songs/' + TIME + '.wav'
-MP3 = 'static/songs/' + TIME + '.mp3'
-URL = 'http://34.209.160.207/' + MP3
-
 class Verse(object):
     
-    def __init__(self, measures=None, key=None, scale=None, m1=None, m2=None,
+    def __init__(self, time=time, measures=None, key=None, scale=None, m1=None, m2=None,
                  notes=None, beats=None):
         self.key = key if key else choice(NAMES)            
         self.scale = scale if scale else choice(list(SCALES))
@@ -27,10 +22,11 @@ class Verse(object):
         self.note_arrangement = notes if notes else self.set_note_arrangement()
         self.beat_arrangement = beats if beats else self.set_beat_arrangement()
         self.frequencies = self.set_frequencies()
+        self.base = str(time) if str(time) else str(time())
         self.songwave = ''
-        self.url = URL
-        self.record()
-        self.convert()
+        self.wav = self.record()
+        self.mp3 = self.convert()
+        self.url = 'http://hellojambot.com/' + self.mp3
 
     def set_note_arrangement(self):
         return (self.first_melody.melody + self.first_melody.melody
@@ -63,7 +59,8 @@ class Verse(object):
         print ""
 
     def record(self):
-        with open(WAV, 'w+'):
+        wav = 'static/songs' + self.base + '.wav'
+        with open(wav, 'w+'):
             prev = Note(0)
             for note in self.frequencies:
                 if note == prev:
@@ -73,18 +70,21 @@ class Verse(object):
                 prev = note
             end = Note(0, 1.0)
             self.songwave += note.chunk_note()
-        wf = wave.open(WAV, 'wb')
+        wf = wave.open(wav, 'wb')
         wf.setnchannels(1)
         wf.setsampwidth(4)
-        wf.setframerate(44100)
+        wf.setframerate(50000)
         wf.writeframes(self.songwave)
         wf.close()
+        return wav
 
     def convert(self):
-        with open(MP3, 'w+'):
+        mp3 = 'static/songs/' + self.base + '.mp3'
+        with open(mp3, 'w+'):
             pass
-        song = AudioSegment.from_wav(WAV)
-        song.export(MP3, format='mp3')
+        song = AudioSegment.from_wav(self.wav)
+        song.export(mp3, format='mp3')
+        return mp3
 
 #    def play(self):
 #        p = pyaudio.PyAudio()
