@@ -83,3 +83,21 @@ p {
     text-decoration: none;
     font-family: sans-serif;
 }
+
+.uhoh h1 {
+    font-size: 4em;
+    color: #6480af;
+    margin: 1em .5em 0 .5em;
+    padding: .5em 0, .5em 0;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+.uhoh p {
+    font-size: 2em;
+    color: #6480af;
+    margin: .5em .5em 0 .5em;
+    padding: .5em 0, .5em 0;
+    text-decoration: none;
+    font-family: sans-serif;
+}

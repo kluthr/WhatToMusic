@@ -2,3 +2,214 @@
 [2017-05-03 05:31:33 +0000] [13358] [INFO] Listening at: http://127.0.0.1:8000 (13358)
 [2017-05-03 05:31:33 +0000] [13358] [INFO] Using worker: sync
 [2017-05-03 05:31:33 +0000] [13363] [INFO] Booting worker with pid: 13363
+[2017-05-04 04:16:06 +0000] [13363] [INFO] Worker exiting (pid: 13363)
+[2017-05-04 04:16:06 +0000] [21160] [INFO] Booting worker with pid: 21160
+[2017-05-04 04:41:14 +0000] [21160] [INFO] Worker exiting (pid: 21160)
+[2017-05-04 04:41:14 +0000] [21419] [INFO] Booting worker with pid: 21419
+[2017-05-04 18:37:55 +0000] [21419] [INFO] Worker exiting (pid: 21419)
+[2017-05-04 18:37:55 +0000] [22725] [INFO] Booting worker with pid: 22725
+[2017-05-04 23:10:03 +0000] [22725] [INFO] Worker exiting (pid: 22725)
+[2017-05-04 23:10:03 +0000] [25110] [INFO] Booting worker with pid: 25110
+[2017-05-04 23:10:42 +0000] [25110] [INFO] Worker exiting (pid: 25110)
+[2017-05-04 23:10:42 +0000] [25118] [INFO] Booting worker with pid: 25118
+[2017-05-04 23:11:20 +0000] [13358] [INFO] Handling signal: term
+[2017-05-04 23:11:20 +0000] [25118] [INFO] Worker exiting (pid: 25118)
+[2017-05-04 23:11:20 +0000] [13358] [INFO] Shutting down: Master
+[2017-05-04 23:20:22 +0000] [25173] [INFO] Starting gunicorn 19.7.1
+[2017-05-04 23:20:22 +0000] [25173] [INFO] Listening at: http://127.0.0.1:8000 (25173)
+[2017-05-04 23:20:22 +0000] [25173] [INFO] Using worker: sync
+[2017-05-04 23:20:22 +0000] [25178] [INFO] Booting worker with pid: 25178
+[2017-05-05 00:45:48 +0000] [25178] [INFO] Worker exiting (pid: 25178)
+[2017-05-05 00:45:48 +0000] [25698] [INFO] Booting worker with pid: 25698
+[2017-05-05 00:47:18 +0000] [25698] [INFO] Worker exiting (pid: 25698)
+[2017-05-05 00:47:18 +0000] [25705] [INFO] Booting worker with pid: 25705
+[2017-05-05 00:47:29 +0000] [25173] [INFO] Handling signal: term
+[2017-05-05 00:47:29 +0000] [25705] [INFO] Worker exiting (pid: 25705)
+[2017-05-05 00:47:29 +0000] [25173] [INFO] Shutting down: Master
+[2017-05-05 00:48:11 +0000] [25713] [INFO] Starting gunicorn 19.4.5
+[2017-05-05 00:48:11 +0000] [25713] [INFO] Listening at: http://127.0.0.1:8000 (25713)
+[2017-05-05 00:48:11 +0000] [25713] [INFO] Using worker: sync
+[2017-05-05 00:48:11 +0000] [25718] [INFO] Booting worker with pid: 25718
+[2017-05-05 00:48:11 +0000] [25718] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+[2017-05-05 00:48:11 +0000] [25718] [INFO] Worker exiting (pid: 25718)
+[2017-05-05 00:48:11 +0000] [25713] [INFO] Shutting down: Master
+[2017-05-05 00:48:11 +0000] [25713] [INFO] Reason: Worker failed to boot.
+[2017-05-05 00:48:34 +0000] [25799] [INFO] Starting gunicorn 19.4.5
+[2017-05-05 00:48:34 +0000] [25799] [INFO] Listening at: http://127.0.0.1:8000 (25799)
+[2017-05-05 00:48:34 +0000] [25799] [INFO] Using worker: sync
+[2017-05-05 00:48:34 +0000] [25804] [INFO] Booting worker with pid: 25804
+[2017-05-05 00:48:34 +0000] [25804] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+[2017-05-05 00:48:34 +0000] [25804] [INFO] Worker exiting (pid: 25804)
+[2017-05-05 00:48:34 +0000] [25799] [INFO] Shutting down: Master
+[2017-05-05 00:48:34 +0000] [25799] [INFO] Reason: Worker failed to boot.
+[2017-05-05 00:49:40 +0000] [25807] [INFO] Starting gunicorn 19.4.5
+[2017-05-05 00:49:40 +0000] [25807] [INFO] Listening at: http://127.0.0.1:8000 (25807)
+[2017-05-05 00:49:40 +0000] [25807] [INFO] Using worker: sync
+[2017-05-05 00:49:40 +0000] [25812] [INFO] Booting worker with pid: 25812
+[2017-05-05 00:49:40 +0000] [25812] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+[2017-05-05 00:49:40 +0000] [25812] [INFO] Worker exiting (pid: 25812)
+[2017-05-05 00:49:40 +0000] [25807] [INFO] Shutting down: Master
+[2017-05-05 00:49:40 +0000] [25807] [INFO] Reason: Worker failed to boot.
+[2017-05-05 01:02:04 +0000] [26059] [INFO] Starting gunicorn 19.4.5
+[2017-05-05 01:02:04 +0000] [26059] [INFO] Listening at: http://127.0.0.1:8000 (26059)
+[2017-05-05 01:02:04 +0000] [26059] [INFO] Using worker: sync
+[2017-05-05 01:02:04 +0000] [26064] [INFO] Booting worker with pid: 26064
+[2017-05-05 01:02:04 +0000] [26064] [ERROR] Exception in worker process:
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/gunicorn/arbiter.py", line 515, in spawn_worker
+    worker.init_process()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 122, in init_process
+    self.load_wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/workers/base.py", line 130, in load_wsgi
+    self.wsgi = self.app.wsgi()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/base.py", line 67, in wsgi
+    self.callable = self.load()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 65, in load
+    return self.load_wsgiapp()
+  File "/usr/lib/python2.7/dist-packages/gunicorn/app/wsgiapp.py", line 52, in load_wsgiapp
+    return util.import_app(self.app_uri)
+  File "/usr/lib/python2.7/dist-packages/gunicorn/util.py", line 366, in import_app
+    __import__(module)
+  File "/home/kluthr/src/WhatToMusic/jambot/application.py", line 3, in <module>
+    from flask import Flask
+ImportError: No module named flask
+[2017-05-05 01:02:04 +0000] [26064] [INFO] Worker exiting (pid: 26064)
+[2017-05-05 01:02:04 +0000] [26059] [INFO] Shutting down: Master
+[2017-05-05 01:02:04 +0000] [26059] [INFO] Reason: Worker failed to boot.
+[2017-05-05 01:03:25 +0000] [26131] [INFO] Starting gunicorn 19.7.1
+[2017-05-05 01:03:25 +0000] [26131] [INFO] Listening at: http://127.0.0.1:8000 (26131)
+[2017-05-05 01:03:25 +0000] [26131] [INFO] Using worker: sync
+[2017-05-05 01:03:25 +0000] [26136] [INFO] Booting worker with pid: 26136
+[2017-05-05 01:03:33 +0000] [26131] [INFO] Handling signal: int
+[2017-05-05 01:03:33 +0000] [26136] [INFO] Worker exiting (pid: 26136)
+[2017-05-05 01:03:33 +0000] [26131] [INFO] Shutting down: Master
+[2017-05-05 01:03:37 +0000] [26141] [INFO] Starting gunicorn 19.7.1
+[2017-05-05 01:03:37 +0000] [26141] [INFO] Listening at: http://127.0.0.1:8000 (26141)
+[2017-05-05 01:03:37 +0000] [26141] [INFO] Using worker: sync
+[2017-05-05 01:03:37 +0000] [26146] [INFO] Booting worker with pid: 26146
